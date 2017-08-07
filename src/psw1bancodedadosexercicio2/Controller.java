@@ -5,6 +5,7 @@
  */
 package psw1bancodedadosexercicio2;
 
+import DAO.AlunoDAO;
 import DAO.DAOFactory;
 import DAO.DerbyMateriaDAO;
 import DAO.MateriaDAO;
@@ -23,35 +24,14 @@ public class Controller {
      */
     public static void main(String[] args) {
 
-        MateriaDAO dao = 
-                MateriaDAO.MateriaDAOFactory( 
-                        MateriaDAO.DERBY );
+        AlunoDAO alunoDAO = AlunoDAO.
+                AlunoDAOFactory( AlunoDAO.DERBY );
         
-        Materia materia1 = new Materia( "PSW 1");
-        Materia materia2 = new Materia( "PSW 2");
+        Aluno a = new Aluno(23242526, "Zé das Couves");
         
-        dao.insert(materia1);
-        dao.insert(materia2);
+        alunoDAO.insert(a);
         
-        System.out.println("Mostrando matérias ------------");
-        ArrayList<Materia> materias = dao.findAll();
-        
-        for (Materia m : materias)
-            System.out.println(m.getId() + "\t" + m.getDescricao());
-        
-        
-        Materia mat = dao.findById(7);
-        if (mat != null)
-            dao.delete(mat);
-        else
-            System.out.println("Não encontrado");
-        
-        System.out.println("Mostrando matérias ------------");
-        materias = dao.findAll();
-        
-        for (Materia m : materias)
-            System.out.println(m.getId() + "\t" + m.getDescricao());
-       
+        alunoDAO.close();
     }
     
 }

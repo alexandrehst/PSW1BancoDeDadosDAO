@@ -25,10 +25,16 @@ public abstract class MateriaDAO {
         
         switch(tipo){
             case DERBY:
-                return new DerbyMateriaDAO();      
-        }
+                return new DerbyMateriaDAO();     
+                
+        }        
+        
+        return null;
     }
    
+    public void setConn(Connection conn){
+        this.conn = conn;
+    }
     public void close(){
         try{
             conn.close();
